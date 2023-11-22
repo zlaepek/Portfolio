@@ -52,7 +52,7 @@ const featuredPosts = [
     date: 'Nov 11',
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random?wallpapers',
+    image: 'https://drive.google.com/uc?export=view&id=1m67bBdEhPLNWIpcFxJzPVo5S5_qBCQ-w',
     imageLabel: 'Image Text',
   },
 ];
