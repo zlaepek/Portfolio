@@ -4,63 +4,46 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../../components/Header';
-import MainFeaturedPost from '../../components/MainFeaturedPost';
-import FeaturedPost from '../../components/FeaturedPost';
+
+import ImageCards from '../../components/imageComponents/GoogleDriveImageCard';
 import Footer from '../../components/Footer';
 
 const sections = [
-    { title: 'Pink', url: '#' },
+    { title: 'Pink', url: ':pink' },
     { title: 'Design', url: '#' },
     { title: 'Culture', url: '#' },
     { title: 'Business', url: '#' },
 ];
 
-const mainFeaturedPost = {
-    title: 'Title of a longer featured blog post',
-    description:
-        "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-    image: 'https://source.unsplash.com/random?wallpapers',
-    imageText: 'main image description',
-    linkText: 'Continue reading…',
-};
-
-const featuredPosts = [
-    {
-        title: 'Featured post',
-        date: 'Nov 12',
-        description:
-            'This is a wider card with supporting text below as a natural lead-in to additional content.',
-        image: 'https://source.unsplash.com/random?wallpapers',
-        imageLabel: 'Image Text',
-    },
-    {
-        title: 'Post title',
-        date: 'Nov 11',
-        description:
-            'This is a wider card with supporting text below as a natural lead-in to additional content.',
-        image: 'https://drive.google.com/uc?export=view&id=1m67bBdEhPLNWIpcFxJzPVo5S5_qBCQ-w',
-        imageLabel: 'Image Text',
-    },
-];
-
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function PhotoPage() {
+const pinkImages = [
+    { id: '1XIF34Zzv_vN3HA-mmtCYWCIy7jhWRVop' },
+    { id: '1jrtv9NAHGngriz7b64gvo9M6ZouvFZkV' },
+    { id: '1kL3Jobu9HXC9NWWW39mbkpYG-zJtbsih' },
+    { id: '1jPtQ26R4JECWPQvj_hNa6HdjD01_aSja' },
+    { id: '1g65v3v17qL2dv7ROeQQEN9KJR2hDWT2k' },
+    { id: '1ptUzygOiKE4rzMCYkauToZz800PhM0fB' },
+];
+
+
+export default function DefaultColorPage() {
     return (
         <ThemeProvider theme={defaultTheme}>
             <CssBaseline />
             <Container maxWidth="lg">
-                <Header title="Photos" sections={sections} />
+                <Header title="Colors" sections={sections} />
                 <main>
-                    <MainFeaturedPost post={mainFeaturedPost} />
                     <Grid container spacing={4}>
-                        {featuredPosts.map((post) => (
-                            <FeaturedPost key={post.title} post={post} />
+                        {pinkImages.map((card) => (
+                            <ImageCards key={card.id} card={card} />
                         ))}
                     </Grid>
                 </main>
             </Container>
+
+
             <Footer
                 title="웹사이트 제작"
                 description="Something here to give the footer a purpose!"
