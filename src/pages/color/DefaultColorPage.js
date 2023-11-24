@@ -1,22 +1,35 @@
 import * as React from 'react';
+import { useParams } from 'react-router-dom';
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
+
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Header from '../../components/Header';
 
+import Header from '../../components/Header';
 import ImageCards from '../../components/imageComponents/GoogleDriveImageCard';
 import Footer from '../../components/Footer';
 
 const sections = [
-    { title: 'Pink', url: ':pink' },
-    { title: 'Design', url: '#' },
-    { title: 'Culture', url: '#' },
-    { title: 'Business', url: '#' },
+    { title: 'Pink', url: 'pink' },
+    { title: 'Blue', url: 'blue' },
+    { title: 'Green', url: 'green' },
+    { title: 'Yellow', url: 'yellow' },
 ];
 
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
+function currentImages(color) {
+    switch (color) {
+        case "pink":
+            return pinkImages;
+        case "blue":
+            return blueImages;
+        case "green":
+            return greenImages;
+        case "yellow":
+            return yellowImages;
+    }
+}
 
 const pinkImages = [
     { id: '1XIF34Zzv_vN3HA-mmtCYWCIy7jhWRVop' },
@@ -27,27 +40,42 @@ const pinkImages = [
     { id: '1ptUzygOiKE4rzMCYkauToZz800PhM0fB' },
 ];
 
+const blueImages = [
+];
+
+const greenImages = [
+];
+
+const yellowImages = [
+];
+
+
+const defaultTheme = createTheme();
+
 
 export default function DefaultColorPage() {
+    const { color } = useParams();
     return (
         <ThemeProvider theme={defaultTheme}>
             <CssBaseline />
             <Container maxWidth="lg">
                 <Header title="Colors" sections={sections} />
                 <main>
-                    <Grid container spacing={4}>
-                        {pinkImages.map((card) => (
-                            <ImageCards key={card.id} card={card} />
-                        ))}
-                    </Grid>
+                    <ResponsiveMasonry
+                        columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+                    >
+                        <Masonry gutter="30px">
+                            {
+                                currentImages(color).map((card) => (
+                                    <ImageCards key={card.id} card={card} />
+                                ))
+                            }
+                        </Masonry>
+                    </ResponsiveMasonry>
                 </main>
             </Container>
 
-
-            <Footer
-                title="웹사이트 제작"
-                description="Something here to give the footer a purpose!"
-            />
+            <Footer />
         </ThemeProvider>
     );
 }
